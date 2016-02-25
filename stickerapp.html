@@ -5,9 +5,26 @@
                 <button class="button" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
 
             </div>
-                <div ng-repeat="image in images">
+                <div style="margin-top:100px" sticker-drop-zone class="well">
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                    Something goes here <br>
+                </div>
+                <div  ng-repeat="image in images">
                  <img class="thumbnail" ng-src="{{image}}" />
-         </div>
+                </div>
           <input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
 </div>
 </div>
@@ -22,7 +39,7 @@
 </div>
 
 <div ng-repeat="sticker in stickers">
-<img class="sticker-thumb" ng-src="{{sticker.image}}">
+<img sticker-draggable draggable="true" id="nkumar" class="sticker-thumb" ng-src="{{sticker.image}}">
 <label> {{sticker.title}} </label>
 </div>
 

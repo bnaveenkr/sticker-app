@@ -87,7 +87,6 @@ stickerApp.controller("StickerUploadCtrl", ['$scope', '$uibModalInstance', funct
     $scope.imageIsLoaded = function(e){
         $scope.$apply(function() {
             $scope.sticker.image = e.target.result; 
-            console.log(e.target.result)
         });
     }
 
@@ -100,3 +99,46 @@ $scope.cancel = function(){
 }
 
 }]);
+
+
+stickerApp.directive("stickerDraggable", function($rootScope){
+return function(scope, element) {
+        // this gives us the native JS object
+        var el = element[0];
+
+        el.draggable = true;
+
+        el.addEventListener(
+            'dragstart',
+            function(e) {
+                e.dataTransfer.setData('Text', e.target.id);
+                console.log(e.target.id)
+                return false;
+            },
+            false
+        );
+
+    }
+})
+
+stickerApp.directive("stickerDropZone",function($rootScope){
+    return function(scope, element, attrs){
+
+        console.log("sdafdsfasd")
+        var el = element[0];
+        console.log(el);
+    el.addEventListener( 'ondrop', function(e) {
+
+        // Stops some browsers from redirecting.
+        console.log("yo yoyoy")
+
+        var item = document.getElementById(e.dataTransfer.getData('Text'));
+                console.log(item)
+        this.appendChild(item);
+        debugger;
+        return false;
+    }, false);
+
+
+    }
+})
