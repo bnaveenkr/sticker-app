@@ -12,7 +12,24 @@
 </div>
 </div>
 <div class="sticker-area col-md-3">
-sticker area
+<div ng-controller="StickerCtrl">
+
+
+<div class="well">
+<center>
+    <button class="button" ng-click=open()> Upload Sticker </button>
+</center>
+</div>
+
+<div ng-repeat="sticker in stickers">
+<img class="sticker-thumb" ng-src="{{sticker.image}}">
+<label> {{sticker.title}} </label>
+</div>
+
 </div>
 </div>
+</div>
+</div>
+</div>
+
  

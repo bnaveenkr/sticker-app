@@ -1,10 +1,5 @@
- /* write your style definitions here or create css files and include them here *?
-.thumb{
-    width:100px;
+.sticker-thumb {
+    width:150px;
+    height: 150px;
     margin:5px;
-    float:left;
-}
-
-.uploader{
-    clear:both;
 }
