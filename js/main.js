@@ -3,44 +3,29 @@
 
 var stickerApp = angular.module('photoSticker', ["ui.router", "ui.bootstrap"]);
 
-stickerApp.config(function($stateProvider, $urlRouterProvider) {
-$urlRouterProvider.otherwise("/");
-  $stateProvider
-    .state('homepage', {
-      name: "home",
-      url: "/",
-      templateUrl : 'stickerapp.html'
-    })
-});
+stickerApp.config(function($stateProvider, $urlRouterProvider){
 
+    // Redirect to home page, if route is not found
+    $urlRouterProvider.otherwise("/");
+
+    $stateProvider
+        .state('homepage', {
+            name: "home",
+            url: "/",
+            templateUrl : 'stickerapp.html'
+        })
+});
 
 stickerApp.controller('PhotoCtrl', ['$scope', function($scope){
 
-    $scope.images = [];
-
-    $scope.imageUpload = function(event){
-         var files = event.target.files; //FileList object
-         
-         for (var i = 0; i < files.length; i++) {
-                 var file = files[i];
-                 var reader = new FileReader();
-                 reader.onload = $scope.imageIsLoaded; 
-                 reader.readAsDataURL(file);
-         }
-    }
-
-    $scope.imageIsLoaded = function(e){
-        $scope.$apply(function() {
-            $scope.images.push(e.target.result);
-        });
-    }
+    $scope.image = '';
 
     $scope.StartOver = function(){
-        $scope.images = []
+        return ($scope.image.length !== 0)
     }
 
     $scope.isPhotoLoaded = function(){
-        return ($scope.images.length > 0) ? true : false;
+        return ($scope.image.length > 0) ? true : false;
     }
 
 }])
@@ -67,36 +52,16 @@ stickerApp.controller('StickerCtrl', ['$scope', '$uibModal', function($scope, $u
 
 stickerApp.controller("StickerUploadCtrl", ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
     
-    $scope.sticker = {
-        'image' : '',
-        'title' : 'Some sticker'
+    $scope.stkrImage = '';
+    $scope.title = "(untitled)";
+
+    $scope.ok = function () {
+        $uibModalInstance.close({'sticker': $scope.stkrImage, 'title': $scope.title});
+    };
+
+    $scope.cancel = function(){
+        $uibModalInstance.dismiss('cancel');
     }
-
-
-    $scope.imageUpload = function(event){
-         var files = event.target.files; //FileList object
-         
-         for (var i = 0; i < files.length; i++) {
-                 var file = files[i];
-                 var reader = new FileReader();
-                 reader.onload = $scope.imageIsLoaded; 
-                 reader.readAsDataURL(file);
-         }
-    }
-
-    $scope.imageIsLoaded = function(e){
-        $scope.$apply(function() {
-            $scope.sticker.image = e.target.result; 
-        });
-    }
-
-$scope.ok = function () {
-    $uibModalInstance.close($scope.sticker);
-  };
-
-$scope.cancel = function(){
-    $uibModalInstance.dismiss('cancel');
-}
 
 }]);
 
@@ -142,3 +107,22 @@ stickerApp.directive("stickerDroparea", function(){
     }
 })
 
+
+// Directive to handle image upload  
+stickerApp.directive('imageUpload', function(){
+    return function(scope, element, attrs){
+        element.bind("change", function(event){
+            var files = event.target.files;
+            for (var i = 0; i < files.length; i++) {
+                 var file = files[i];
+                 var reader = new FileReader();
+                 reader.onload = function(e){
+                    scope.$apply(function() {
+                        scope[attrs.imageUpload] = e.target.result;
+                    });
+                 };
+                 reader.readAsDataURL(file);
+            }
+        });
+    };
+});
