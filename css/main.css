@@ -9,3 +9,22 @@
     margin-top: -5px;
     margin-right: -10px;
 }
+
+.card {
+    background-color: rgb(233,233,233);
+    border-radius: 10px;
+    height: 650px;
+}
+
+.photo-area {
+    margin : 5px;
+}
+
+.sticker-area {
+    margin: 5px;
+}
+
+.btn-stkr-upload {
+    margin-top: 17px;
+    margin-left: 12px;
+}

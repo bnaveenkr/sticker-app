@@ -11,7 +11,7 @@
 
 <div class="container">
     <!-- Canvas area -->
-    <div class="photo-area col-md-offset-3  col-md-4">
+    <div class="photo-area card col-md-offset-2  col-md-5">
         <div ng-controller="PhotoCtrl">
             <div class="row">
                 <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
@@ -24,18 +24,14 @@
     </div>
 
     <!-- sticker column -->
-    <div class="sticker-area col-md-2">
-        <div ng-controller="StickerCtrl">
-            <div class="well">
-                <center>
-                    <button class="btn btn-primary" ng-click=open()> Upload Sticker </button>
-                </center>
-            </div>
+    <div class="sticker-area card col-md-2" ng-controller="StickerCtrl">
+             <button class="btn btn-md btn-primary btn-stkr-upload" ng-click=open()> 
+                <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload Sticker 
+            </button>
             <div ng-repeat="sticker in stickers">
                 <img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
                 <label> {{sticker.title}} </label>
             </div>
-        </div>
     </div>
 </div>
 
