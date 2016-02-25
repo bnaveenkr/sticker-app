@@ -10,30 +10,31 @@
 </nav>
 
 <div class="container">
-<div class="row">
-<div class="photo-area col-md-offset-3  col-md-4">
-<div ng-controller="PhotoCtrl">
-<div class="row">
-    <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
-</div>
-<div sticker-droparea ng-repeat="image in images">
-    <img class="thumbnail" width=200px ng-src="{{image}}" />
-</div>
-<input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+    <!-- Canvas area -->
+    <div class="photo-area col-md-offset-3  col-md-4">
+        <div ng-controller="PhotoCtrl">
+            <div class="row">
+                <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
             </div>
+            <div sticker-droparea ng-repeat="image in images">
+                <img class="thumbnail" width=200px ng-src="{{image}}" />
+            </div>
+            <input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
         </div>
+    </div>
 
-        <div class="sticker-area col-md-2">
-            <div ng-controller="StickerCtrl">
-                <div class="well">
-                    <center>
-                        <button class="btn btn-primary" ng-click=open()> Upload Sticker </button>
-                    </center>
-                </div>
-                <div ng-repeat="sticker in stickers">
-                    <img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
-                    <label> {{sticker.title}} </label>
-                </div>
+    <!-- sticker column -->
+    <div class="sticker-area col-md-2">
+        <div ng-controller="StickerCtrl">
+            <div class="well">
+                <center>
+                    <button class="btn btn-primary" ng-click=open()> Upload Sticker </button>
+                </center>
+            </div>
+            <div ng-repeat="sticker in stickers">
+                <img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
+                <label> {{sticker.title}} </label>
+            </div>
         </div>
     </div>
 </div>
