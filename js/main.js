@@ -141,3 +141,4 @@ stickerApp.directive("stickerDroparea", function(){
         }, false);
     }
 })
+
