@@ -3,3 +3,9 @@
     height: 150px;
     margin:5px;
 }
+
+.brand-logo {
+    width: 30px;
+    margin-top: -5px;
+    margin-right: -10px;
+}
