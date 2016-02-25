@@ -135,6 +135,7 @@ stickerApp.directive("stickerDroparea", function(){
             var data = event.dataTransfer.getData("text/plain");
             var imgTag = document.createElement("img");
             imgTag.src = data;
+            imgTag.width = "200px";
             this.appendChild(imgTag)
             event.preventDefault();
         }, false);

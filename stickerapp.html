@@ -1,52 +1,29 @@
 <div class="container">
-<div class="photo-area col-md-9">
-       <div ng-controller="PhotoCtrl">
-            <div class="row">
-                <button class="button" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
-
+    <div class="row">
+        <div class="photo-area col-md-9">
+            <div ng-controller="PhotoCtrl">
+                <div class="row">
+                    <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
+                </div>
+                <div sticker-droparea ng-repeat="image in images">
+                    <img class="thumbnail" width=200px ng-src="{{image}}" />
+                </div>
+                <input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
             </div>
-                <div style="margin-top:100px" sticker-droparea class="well">
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
-                    Something goes here <br>
+        </div>
+
+        <div class="sticker-area col-md-3">
+            <div ng-controller="StickerCtrl">
+                <div class="well">
+                    <center>
+                        <button class="btn btn-primary" ng-click=open()> Upload Sticker </button>
+                    </center>
                 </div>
-                <div  ng-repeat="image in images">
-                 <img class="thumbnail" ng-src="{{image}}" />
+                <div ng-repeat="sticker in stickers">
+                    <img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
+                    <label> {{sticker.title}} </label>
                 </div>
-          <input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
-</div>
-</div>
-<div class="sticker-area col-md-3">
-<div ng-controller="StickerCtrl">
-
-
-<div class="well">
-<center>
-    <button class="button" ng-click=open()> Upload Sticker </button>
-</center>
+        </div>
+    </div>
 </div>
 
-<div ng-repeat="sticker in stickers">
-<img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
-<label> {{sticker.title}} </label>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
- 
