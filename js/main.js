@@ -100,45 +100,43 @@ $scope.cancel = function(){
 
 }]);
 
-
-stickerApp.directive("stickerDraggable", function($rootScope){
-return function(scope, element) {
-        // this gives us the native JS object
-        var el = element[0];
-
-        el.draggable = true;
-
-        el.addEventListener(
-            'dragstart',
-            function(e) {
-                e.dataTransfer.setData('Text', e.target.id);
-                console.log(e.target.id)
-                return false;
-            },
-            false
-        );
-
-    }
-})
-
-stickerApp.directive("stickerDropZone",function($rootScope){
+stickerApp.directive("stickerDrag", function(){
     return function(scope, element, attrs){
+        var elem = element[0];
+        elem.draggable = true;
+        elem.addEventListener('dragstart', function(event){
+            event.dataTransfer.setData('text/plain', this.src);
+            event.target.style.border = "1px solid #CCCCCC";
+        }, false);
+        elem.addEventListener('dragend', function(event){
+            event.target.style.border = "none";
+        }, false);
+    }
+});
 
-        console.log("sdafdsfasd")
-        var el = element[0];
-        console.log(el);
-    el.addEventListener( 'ondrop', function(e) {
+stickerApp.directive("stickerDroparea", function(){
+    return function(scope, element, attrs){
+        var elem = element[0];
+        elem.addEventListener('dragenter', function(event){
+            event.target.style.border = "2px dashed #ff0000";
+        }, false);
 
-        // Stops some browsers from redirecting.
-        console.log("yo yoyoy")
+        elem.addEventListener('dragover', function(event){
+            event.preventDefault();
+            return false;
+        }, false);
 
-        var item = document.getElementById(e.dataTransfer.getData('Text'));
-                console.log(item)
-        this.appendChild(item);
-        debugger;
-        return false;
-    }, false);
+        elem.addEventListener('dragleave', function(event){
+        event.target.style.border = "none";
+        }, false);
 
-
+        elem.addEventListener('drop', function(event){
+            event.target.style.border = "none";
+            var data = event.dataTransfer.getData("text/plain");
+            var imgTag = document.createElement("img");
+            imgTag.src = data;
+            this.appendChild(imgTag)
+            event.preventDefault();
+        }, false);
     }
 })

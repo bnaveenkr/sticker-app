@@ -5,7 +5,7 @@
                 <button class="button" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
 
             </div>
-                <div style="margin-top:100px" sticker-drop-zone class="well">
+                <div style="margin-top:100px" sticker-droparea class="well">
                     Something goes here <br>
                     Something goes here <br>
                     Something goes here <br>
@@ -39,7 +39,7 @@
 </div>
 
 <div ng-repeat="sticker in stickers">
-<img sticker-draggable draggable="true" id="nkumar" class="sticker-thumb" ng-src="{{sticker.image}}">
+<img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
 <label> {{sticker.title}} </label>
 </div>
 
