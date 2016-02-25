@@ -1,1 +1,10 @@
  /* write your style definitions here or create css files and include them here *?
+.thumb{
+    width:100px;
+    margin:5px;
+    float:left;
+}
+
+.uploader{
+    clear:both;
+}

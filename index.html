@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="photoSticker">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -10,10 +10,15 @@
         <link rel="stylesheet" href="css/main.css">
         <link rel="stylesheet" href="external/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="external/bootstrap/css/bootstrap-theme.min.css">
+
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="external/angular.min.js"></script>
+        <script src="external/angular-ui-router.min.js"></script>
+        <script src="external/bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
     </head>
     <body>
-        <script src="js/main.js"></script>
-        <script src="external/angular.min.js"></script>
-        <script src="external/bootstrap/js/bootstrap.min.js"></script>
+    <div ui-view></div>
+
     </body>
 </html>

@@ -1,0 +1,18 @@
+<div class="container">
+<div class="photo-area col-md-9">
+       <div ng-controller="PhotoCtrl">
+            <div class="row">
+                <button class="button" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
+
+            </div>
+                <div ng-repeat="image in images">
+                 <img class="thumbnail" ng-src="{{image}}" />
+         </div>
+          <input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+</div>
+</div>
+<div class="sticker-area col-md-3">
+sticker area
+</div>
+</div>
+ 
