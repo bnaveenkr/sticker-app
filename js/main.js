@@ -95,10 +95,13 @@ stickerApp.directive("stickerDroparea", function(){
         elem.addEventListener('drop', function(event){
             event.target.style.border = "none";
             var data = event.dataTransfer.getData("text/plain");
-            var imgTag = document.createElement("img");
-            imgTag.src = data;
-            imgTag.width = "200px";
-            this.appendChild(imgTag)
+            // assumes this is used only on canvas
+            var ctx = this.getContext("2d");
+                var imageObj = new Image();
+                imageObj.onload = function(){
+                ctx.drawImage(this, event.offsetX-75, event.offsetY-75, 150, 150);
+            }
+                imageObj.src = data;
             event.preventDefault();
         }, false);
     }
