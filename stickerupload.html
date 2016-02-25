@@ -1,8 +1,17 @@
 <div class="modal-header">
-        <h3 class="modal-title">Upload Sticker</h3>
+    <h3 class="modal-title">Add New Sticker</h3>
 </div>
 <div class="modal-body">
-        <input  type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+  <form>
+  <div class="form-group">
+    <label for="sticker-name">Sticker Name</label>
+    <input type="text" class="form-control" id="sticker-name" placeholder="Sticker Name" ng-model=title>
+  </div>
+  <div class="form-group">
+    <label for="sticker-file">File input</label>
+    <input type="file" id="sticker-file" image-upload="stkrImage">
+  </div>
+</form>
 </div>
 <div class="modal-footer">
         <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>

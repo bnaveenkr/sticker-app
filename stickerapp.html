@@ -16,10 +16,8 @@
             <div class="row">
                 <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
             </div>
-            <div sticker-droparea ng-repeat="image in images">
-                <img class="thumbnail" width=200px ng-src="{{image}}" />
-            </div>
-            <input ng-if=!isPhotoLoaded() type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(event)" multiple />
+            <canvas width="450px" height="600px" sticker-droparea load-image={{image}}></canvas> 
+            <input ng-show=!isPhotoLoaded() type='file' image-upload=image />
         </div>
     </div>
 

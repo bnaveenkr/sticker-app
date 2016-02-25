@@ -21,7 +21,7 @@ stickerApp.controller('PhotoCtrl', ['$scope', function($scope){
     $scope.image = '';
 
     $scope.StartOver = function(){
-        return ($scope.image.length !== 0)
+        $scope.image = '';
     }
 
     $scope.isPhotoLoaded = function(){
@@ -36,27 +36,24 @@ stickerApp.controller('StickerCtrl', ['$scope', '$uibModal', function($scope, $u
     $scope.stickers = [];    
 
     $scope.open = function() {
-    var modalInstance = $uibModal.open({
-        templateUrl: 'stickerupload.html',
-        controller : 'StickerUploadCtrl'
-    })
+        var modalInstance = $uibModal.open({
+                templateUrl: 'stickerupload.html',
+                controller : 'StickerUploadCtrl'
+            });
 
-    modalInstance.result.then(function (sticker) {
-      $scope.stickers.push(sticker);
-    }, function () {
-        // do nothing for now.
-    });
+            modalInstance.result.then(function (sticker) {
+              $scope.stickers.push(sticker);
+            });
     };
-
 }]);
 
 stickerApp.controller("StickerUploadCtrl", ['$scope', '$uibModalInstance', function($scope, $uibModalInstance){
     
-    $scope.stkrImage = '';
-    $scope.title = "(untitled)";
+    $scope.stkrImage = undefined;
+    $scope.title = undefined;
 
     $scope.ok = function () {
-        $uibModalInstance.close({'sticker': $scope.stkrImage, 'title': $scope.title});
+        $uibModalInstance.close({'image': $scope.stkrImage, 'title': $scope.title});
     };
 
     $scope.cancel = function(){
@@ -125,4 +122,19 @@ stickerApp.directive('imageUpload', function(){
             }
         });
     };
+});
+
+
+stickerApp.directive('loadImage', function(){
+
+    return function(scope, element, attrs){
+        var context = element[0].getContext("2d");
+        var imageObj = new Image();
+        imageObj.onload = function(){
+            context.drawImage(this, 0, 0, element[0].width, element[0].height);
+        }
+        attrs.$observe('loadImage',function(data){
+            imageObj.src = data;
+        })
+    }
 });
