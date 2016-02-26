@@ -137,7 +137,12 @@ stickerApp.directive('loadImage', function(){
             context.drawImage(this, 0, 0, element[0].width, element[0].height);
         }
         attrs.$observe('loadImage',function(data){
-            imageObj.src = data;
+            if (data.length > 0){
+                imageObj.src = data;
+            }
+            else{
+                context.clearRect(0,0,element[0].width, element[0].height);
+            }
         })
     }
 });

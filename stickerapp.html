@@ -13,11 +13,11 @@
     <!-- Canvas area -->
     <div class="photo-area card col-md-offset-2  col-md-5">
         <div ng-controller="PhotoCtrl">
+            <input ng-show=!isPhotoLoaded() type='file' image-upload=image class="file-input"/>
             <div class="row">
                 <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
             </div>
-            <canvas width="450px" height="600px" sticker-droparea load-image={{image}}></canvas> 
-            <input ng-show=!isPhotoLoaded() type='file' image-upload=image />
+            <canvas ng-show=isPhotoLoaded() width="450px" height="600px" sticker-droparea load-image={{image}}></canvas>
         </div>
     </div>
 
