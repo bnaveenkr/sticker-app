@@ -15,9 +15,9 @@
         <div ng-controller="PhotoCtrl">
             <input ng-show=!isPhotoLoaded() type='file' image-upload=image class="file-input"/>
             <div class="row">
-                <button class="btn btn-primary" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
+                <button class="btn btn-primary btn-startover" ng-if=isPhotoLoaded() ng-click=StartOver()> Start Over </button>
             </div>
-            <canvas ng-show=isPhotoLoaded() width="450px" height="600px" sticker-droparea load-image={{image}}></canvas>
+            <canvas ng-show=isPhotoLoaded() width="450px" height="580px" sticker-droparea load-image={{image}}></canvas> 
         </div>
     </div>
 
@@ -27,7 +27,7 @@
                 <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Upload Sticker 
             </button>
             <div ng-repeat="sticker in stickers">
-                <img sticker-drag class="sticker-thumb" ng-src="{{sticker.image}}">
+                <img sticker-drag class="sticker-thumb grab" ng-src="{{sticker.image}}">
                 <label> {{sticker.title}} </label>
             </div>
     </div>

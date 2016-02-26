@@ -68,6 +68,7 @@ stickerApp.directive("stickerDrag", function(){
         elem.draggable = true;
         elem.addEventListener('dragstart', function(event){
             event.dataTransfer.setData('text/plain', this.src);
+            event.dataTransfer.effectAllowed = "copyMove";
             event.target.style.border = "1px solid #CCCCCC";
         }, false);
         elem.addEventListener('dragend', function(event){
@@ -81,6 +82,7 @@ stickerApp.directive("stickerDroparea", function(){
         var elem = element[0];
         elem.addEventListener('dragenter', function(event){
             event.target.style.border = "2px dashed #ff0000";
+            event.dataTransfer.effectAllowed = "copy";
         }, false);
 
         elem.addEventListener('dragover', function(event){

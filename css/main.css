@@ -1,7 +1,8 @@
 .sticker-thumb {
-    width:150px;
+    width: 150px;
     height: 150px;
     margin:5px;
+    cursor: grab;
 }
 
 .brand-logo {
@@ -32,4 +33,22 @@
 .file-input{
     margin-left: 35%;
     margin-top: 50%;
+}
+
+.btn-startover {
+    margin-top: 10px;
+    margin-bottom: 10px !important;
+    margin-left: 40%;
+}
+
+.grab {
+    cursor: move;
+    cursor: grab;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+.grab:active {
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    cursor: -moz-grabbing;
 }
